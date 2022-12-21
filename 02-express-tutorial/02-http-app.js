@@ -1,4 +1,5 @@
-//I keep getting a cannot find script (from the index) error in the browser
+//I keep getting an error in browser
+//Loading failed for the <script> with source “http://localhost:5000/browser-app.js”. localhost:5000:72:1
 
 const http = require('http')
 const {readFileSync} = require('fs')
