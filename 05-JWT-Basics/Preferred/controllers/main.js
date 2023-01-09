@@ -6,7 +6,7 @@ const login = async (req, res) => {
   if (!username || !password) {
     res.status(400).send("username and password are required");
   } else {
-    const token = jwt.sign({ username, password }, process.env.TOKEN_SECRET, {
+    const token = jwt.sign({ username }, process.env.TOKEN_SECRET, {
       expiresIn: "24h",
     });
 
