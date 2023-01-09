@@ -12,26 +12,28 @@ submitBtn.addEventListener("click", async (e) => {
   try {
     const { data } = await axios.post("/api/v1/logon", { username, password });
     localStorage.setItem("token", data.token);
-    console.log("got it");
   } catch (error) {
-    console.log(error);
+    display.innerHTML = `<h5>${error}</h5>`;
     localStorage.removeItem("token");
   }
 });
 
-displayBtn.addEventListener ("click", async (e) => {
-    const token = localStorage.getItem('token')
+displayBtn.addEventListener("click", async (e) => {
+  const token = localStorage.getItem("token");
+  if (token) {
     try {
-      const { data } = await axios.get('/api/v1/hello', {
+      const { data } = await axios.get("/api/v1/hello", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
-      })
-      display.innerHTML = `<h5>${data.msg}</h5>`
-  
+      });
+      display.innerHTML = `<h5>${data.msg}</h5>`;
     } catch (error) {
-      localStorage.removeItem('token')
-      display.innerHTML = `<p>${error.response.data.msg}</p>`
+      display.innerHTML = `<h5>${error}</h5>`;
+
+      localStorage.removeItem("token");
     }
-  })
-  
+  } else {
+    display.innerHTML = `<h5>Not authorized<h5>`;
+  }
+});
