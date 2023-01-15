@@ -13,4 +13,6 @@ const currentOs = {
     totalMem: os.totalmem(),
     freeMem: os.freemem(),
 }
-console.log(currentOs)
+console.log(user.username)
+console.log(os.EOL)
+module.exports = user, os
