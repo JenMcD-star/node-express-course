@@ -9,7 +9,7 @@
     
     3.You are careful to store your sensitive information in a .env file.
         a.How do you get your app to access the information in the .env file?
-        -Require the env in another file and then use the variable named in the env file to process the variable. 
+        -Require the dotenv library to read the .env file and load it into the process.env variable.  
         
         b.How do you protect the contents of the .env file so that it is not stored in your github repository?
         -Add the file to .gitnore as soon as it's created so it's not pushed to github.
