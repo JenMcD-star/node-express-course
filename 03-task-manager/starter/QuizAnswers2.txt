@@ -1,0 +1,20 @@
+    In this lesson, you created a middleware function called asyncWrapper. Why?
+    
+    We want async functions because they are nonblocking. 
+    However, adding a try catch block to each function is repetitive and long.
+    In order to prevent this repetitive code we wrap the asynchronous try/catch
+    into a middleware function that will perform the try catch and then return the value.
+
+    Suppose that you want to make sure that both a status code and and error message are send back 
+    to the user when they request the URL for a task that does not exist. 
+    Assume that you’ve created a CustomAPIError class and an error handler that references that class. 
+    Complete the code:
+
+const getTask = asyncWrapper(async (req, res, next) => {
+  const { id: taskID } = req.params;
+  const task = await Task.findOne({ _id: taskID });
+  if (!task) {
+    return next(CustomAPIError(`No task with id : ${taskID}`, 404))
+  }
+  res.status(200).json({ task });
+});
